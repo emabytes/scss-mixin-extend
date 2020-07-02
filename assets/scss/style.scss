@@ -1,0 +1,46 @@
+@mixin ball($f, $h, $br) {
+  width: $f;
+  height: $h;
+  border-radius: $br;
+}
+
+@mixin animation($an, $ad, $af, $ai) {
+  animation-name: $an;
+  animation-duration: $ad;
+  animation-timing-function: $af;
+  animation-iteration-count: $ai;
+}
+
+@mixin bg-color($bg){
+    background: $bg;
+}
+
+.container {
+  width: 100%;
+  height: 25vh;
+  background: rgb(247, 204, 211);
+  .ball1 {
+    @include ball(50px, 50px, 50%);
+    @include animation(right-left, 2s, ease, infinite);
+    background: black;
+  }
+  .ball2 {
+    @extend .ball1;
+    @include animation(right-left, 3s, ease-in-out, infinite);
+    @include bg-color(grey);
+  }
+  .ball3 {
+    @extend .ball1;
+    @include animation(right-left, 4s, linear, infinite);
+    @include bg-color(lightgray);
+  }
+}
+
+@keyframes right-left {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(500px);
+  }
+}
